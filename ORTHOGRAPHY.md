@@ -33,9 +33,11 @@ the project rendering is listed separately where one has been chosen.
 | James Potter | Τζέιμς Πότερ |
 | Lily Potter | Λίλι Πότερ |
 | Ron Weasley | Ρον Ουέσλι |
+| Sirius Black | Σείριος Μπλακ |
 | Voldemort | Βόλντεμορτ |
 | Hermione Granger | Ερμιόνη Γκρέιντζερ |
 | Albus Dumbledore | Άλμπους Ντάμπλντορ |
+| Cornelius Fudge | Κορνήλιος Φατζ |
 | Minerva McGonagall | Μινέρβα ΜακΓκόναγκαλ |
 | Rubeus Hagrid | Ρούμπεους Χάγκριντ |
 | Vernon Dursley | Βέρνον Ντάρσλι |
@@ -43,14 +45,18 @@ the project rendering is listed separately where one has been chosen.
 | Dudley Dursley | Ντάντλι Ντάρσλι |
 | Marge | Μαρτζ |
 | Piers Polkiss | Πιρς Πόλκις |
+| Dennis | Ντένις |
+| Malcolm | Μάλκολμ |
+| Gordon | Γκόρντον |
 | Mrs Figg | Κυρία Φιγκ |
 | Tom, the Leaky Cauldron barman | Τομ |
 | Doris Crockford | Ντόρις Κόκφορντ |
 | Dedalus Diggle | Δαίδαλος Ντιγκλ |
 | Jim McGuffin | Τζιμ ΜακΓκάφιν |
+| Ted, television announcer | Τεντ |
 | Draco Malfoy | Ντράκο Μαλφόι |
 | Neville Longbottom | Νέβιλ Λονγκμπότομ |
-| Severus Snape | Σέβερους; Σνέιπ |
+| Severus Snape | Σέβερους (given name); Σνέιπ (surname) |
 | Quirrell | Κούιρελ |
 | Flitwick | Φλίτγουικ |
 | Argus Filch | Άργκους Φιλτς |
@@ -71,6 +77,7 @@ the project rendering is listed separately where one has been chosen.
 | Dean Thomas | Ντιν Τόμας |
 | Lavender Brown | Λάβεντερ Μπράουν |
 | Patil twins | Πάτιλ |
+| Parvati Patil | Παρβάτι Πάτιλ |
 | Madam Pince | Κυρία Πινς |
 | Hannah Abbott | Χάνα Άμποτ |
 | Susan Bones | Σούζαν Μπόουνς |
@@ -114,9 +121,17 @@ the project rendering is listed separately where one has been chosen.
 | Paracelsus | Παράκελσος |
 | Merlin | Μέρλιν |
 | Cliodna | Κλιόντνα |
+| Miranda Goshawk | Μιράντα Γκόσακ |
+| Bathilda Bagshot | Μπατίλντα Μπάγκσοτ |
+| Adalbert Waffling | Άνταλμπερτ Γουάφλιν |
+| Emeric Switch | Έμεριχ Σουίτς |
+| Phyllida Spore | Φίλιντα Σπόαρ |
+| Arsenius Jigger | Αρσένιο Τζίγκερ |
+| Newt Scamander | Νιουτ Σκάμαντερ |
+| Quentin Trimble | Κουέντιν Τριμπλ |
 | Professor Vindictus Viridian | Καθηγητής Βεντίκτους Βιρίντιαν |
 
-### Creatures and animals
+### Creatures, animals, and magical plants
 
 | Creature or animal | Greek source spelling |
 | --- | --- |
@@ -129,20 +144,42 @@ the project rendering is listed separately where one has been chosen.
 | Firenze, the centaur | Φιρέντσε |
 | Unicorn | Μονόκερος |
 | Phoenix | Φοίνικας |
+| Devil's Snare | Παγίδα του σατανά |
 
 ### Places and institutions
 
 | Place or institution | Greek source spelling |
 | --- | --- |
 | Privet Drive | Πριβέτ |
+| Grunnings factory | Γκράνινγκς |
 | Little Whinging | Λιτλ Γουίνγκινγκ |
 | Surrey | Σάρεϊ |
+| Kent | Κεντ |
+| Yorkshire | Γιόρκσιρ |
+| Dundee | Ντάντι |
 | London | Λονδίνο |
+| England | Αγγλία |
+| Brazil | Βραζιλία |
+| Africa | Αφρική |
+| Sahara Desert | έρημο Σαχάρα |
+| Great Britain | Μεγάλη Βρετανία |
+| Ireland | Ιρλανδία |
+| Wales | Ουαλία |
+| Hebrides | Νησιά Εβρίδες |
 | King's Cross | Κινγκς Κρος |
 | Platform 9 3/4 | Πλατφόρμα 9 3/4 |
 | Hogwarts | Χόγκουαρτς |
 | Hogwarts School | Σχολή Χόγκουαρτς |
 | Hogwarts Express | Χόγκουαρτς Εξπρές |
+| Great Hall | μεγάλη τραπεζαρία |
+| Gryffindor Common Room | αίθουσα αναψυχής του Γκρίφιντορ |
+| Hogwarts library | βιβλιοθήκη του Χόγκουαρτς |
+| Hogwarts owlery | κουκουβαγιώνα |
+| Hospital Wing | πτέρυγα του νοσοκομείου |
+| Trophy Room | αίθουσα των τροπαίων |
+| Restricted Section of the Library | απαγορευμένο τμήμα της βιβλιοθήκης |
+| Quidditch pitch | γήπεδο του κουίντιτς |
+| Hagrid's Hut | καλύβα του Χάγκριντ |
 | Diagon Alley | Διαγώνια Αλέα |
 | Leaky Cauldron | Ραγισμένο Τσουκάλι |
 | Gringotts | Γκρίνγκοτς |
@@ -170,7 +207,9 @@ the project rendering is listed separately where one has been chosen.
 | Hufflepuff | Χάφλπαφλ |
 | Ravenclaw | Ράβενκλοου |
 | Sorting Hat | Καπέλο της Επιλογής |
+| Gryffindor common-room password | Καπούτ Ντρακόνι |
 | Philosopher's Stone | Φιλοσοφική Λίθος |
+| Halloween | Χάλοουιν |
 | Mirror of Erised | Καθρέφτης του Έριζεντ |
 | Invisibility Cloak | αόρατος μανδύας |
 | Deluminator | σβηστήρα |
@@ -199,6 +238,7 @@ song, retain `Χόγκουαρε` as the vocative form of the Hogwarts name `Χ�
 
 | Spell | Greek source spelling |
 | --- | --- |
+| Alohomora | Αλοχομόρα |
 | Wingardium Leviosa | Γουινγκάρτιουμ Λεβιόζα |
 | Locomotor Mortis | Λοκομότορ Μόρτις |
 | Petrificus Totalus | Πετρίφικους Τόταλους |
@@ -221,7 +261,18 @@ song, retain `Χόγκουαρε` as the vocative form of the Hogwarts name `Χ�
 
 | Title or printed label | Greek source spelling |
 | --- | --- |
-| A History of Magic | Η ιστορία της μαγείας |
+| A History of Magic | Ιστορία της μαγείας |
+| Basic Book of Spells, Grade 1 | Εγχειρίδιο βασικής μαγείας, Τάξη Α' |
+| Magical Theory | Μαγικές θεωρίες |
+| A Beginner's Guide to Transfiguration | Οδηγός αρχαρίων για μεταμορφώσεις |
+| One Thousand Magical Herbs and Fungi | Χίλια μαγικά βότανα και μανιτάρια |
+| Magical Drafts and Potions | Μαγικά ποτά και φίλτρα |
+| Fantastic Beasts and Where to Find Them | Φανταστικά ζώα και ηού βρίσκονται |
+| The Dark Forces: A Guide to Self-Protection | Οι σκοτεινές δυνάμεις: οδηγός αυτοπροστασίας |
+| Dragon Species in Great Britain and Ireland | Είδη δράκων στη Μεγάλη Βρετανία και την Ιρλανδία |
+| From Egg to Inferno | Από το αβγό ως την κόλαση |
+| A Guide to Dragon Breeders | Οδηγός για εκτροφείς δράκων |
+| Dragon Breeding for Pleasure and Profit | Εκτροφή δράκων για κέρδος και χόμπι |
 | Hogwarts: A History | Το Χόγκουαρτς κι η ιστορία του |
 | Quidditch Through the Ages | Το κουίντιτς ανά τους αιώνες |
 | The Daily Prophet | Ημερήσιος Προφήτης |
@@ -235,6 +286,9 @@ song, retain `Χόγκουαρε` as the vocative form of the Hogwarts name `Χ�
 The Greek source varies between `Νίκολας Φλαμέλ` and `Νικόλας Φλαμέλ`; use
 `Νίκολας Φλαμέλ` consistently in the Tsakonian text. It also has one
 `Γκρίντεδαλντ` spelling alongside `Γκρίντελβαλντ`; use `Γκρίντελβαλντ`.
+The source also uses `Αίλι` twice for Lily; use `Λίλι` consistently, as in the
+The source also uses `Αίλι` three times for Lily; use `Λίλι` consistently, as
+in the other references to her.
 
 For names and labels not listed here, copy the spelling from the Greek source
 and add it to the project glossary when it recurs. Compare each entry with its
