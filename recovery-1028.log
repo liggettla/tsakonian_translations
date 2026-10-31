@@ -1,0 +1,3 @@
+{"model":"hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0","sourceCharacters":567504,"chunks":3363,"resumed":1028,"limit":1029,"output":"/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/1 Harry Potter - Tsakonian.txt"}
+{"completed":1029,"total":3363,"seconds":242,"estimatedRemainingMinutes":9423,"warnings":["fallback_generation_settings","sentence_split"]}
+PILOT COMPLETE: /Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/1 Harry Potter - Tsakonian.partial.txt
