@@ -1,10 +1,13 @@
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { appendFile, mkdir, readFile, rename, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, readdir, rename, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
+const execFileAsync = promisify(execFile);
 const model = 'hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0';
 const options = {
   temperature: 0, seed: 42, num_ctx: 4096, num_predict: 1536,
@@ -58,6 +61,30 @@ function warnings(source, translation) {
   return issues;
 }
 
+async function findSources() {
+  const sourceDir = join(root, 'ελληνικα');
+  const entries = await readdir(sourceDir, { withFileTypes: true });
+  const sources = entries
+    .filter(entry => entry.isFile() && /^\d+\s/u.test(entry.name) && /\.(?:txt|docx)$/iu.test(entry.name))
+    .map(entry => ({ book: Number(entry.name.match(/^\d+/u)[0]), path: join(sourceDir, entry.name) }))
+    .sort((left, right) => left.book - right.book);
+  for (let index = 1; index < sources.length; index++) {
+    assert.notEqual(sources[index - 1].book, sources[index].book, `Multiple source files found for book ${sources[index].book}.`);
+  }
+  return sources;
+}
+
+async function readSource(path) {
+  if (/\.docx$/iu.test(path)) {
+    const { stdout } = await execFileAsync('textutil', ['-convert', 'txt', '-stdout', path], {
+      encoding: 'utf8',
+      maxBuffer: 64 * 1024 * 1024
+    });
+    return stdout;
+  }
+  return readFile(path, 'utf8');
+}
+
 async function main() {
   if (process.argv.includes('--self-test')) {
     for (const source of ['Title\n\nOne sentence. Another sentence.\n', '  A long sentence. '.repeat(100), '\r\n  \r\n']) {
@@ -72,14 +99,36 @@ async function main() {
     console.log('PASS: segmentation preserves text and line breaks; prompt and warning checks pass.');
     return;
   }
-  const input = join(root, 'ελληνικα', '1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt');
-  const outputDir = join(root, 'τςακονιαν');
-  const stem = '1 Harry Potter - Tsakonian';
+
+  if (process.argv.includes('--list')) {
+    const sources = await findSources();
+    console.log(JSON.stringify(sources.map(({ book, path }) => ({ book, input: path })), null, 2));
+    return;
+  }
+
+  const allBooks = process.argv.includes('--all');
+  const bookIndex = process.argv.indexOf('--book');
+  assert.ok(!(allBooks && bookIndex >= 0), 'Use either --all or --book, not both.');
+  const sources = await findSources();
+  const books = allBooks
+    ? sources.filter(source => source.book > 1)
+    : [sources.find(source => source.book === (bookIndex < 0 ? 1 : Number(process.argv[bookIndex + 1])))].filter(Boolean);
+  assert.ok(books.length, allBooks ? 'No source manuscripts for books 2 and later were found.' : 'No source manuscript found for the requested book.');
+  const limitIndex = process.argv.indexOf('--limit');
+  const limit = limitIndex < 0 ? undefined : Number(process.argv[limitIndex + 1]);
+  if (limit !== undefined) assert.ok(Number.isInteger(limit) && limit > 0, 'Invalid limit');
+  for (const source of books) await translateBook(source, limit);
+}
+
+async function translateBook(sourceFile, requestedLimit) {
+  const { book, path: input } = sourceFile;
+  const outputDir = join(root, 'τςακονιαν', String(book));
+  const stem = `${book} Harry Potter - Tsakonian`;
   const checkpoint = join(outputDir, `${stem}.checkpoint.jsonl`);
   const output = join(outputDir, `${stem}.txt`);
   const partial = join(outputDir, `${stem}.partial.txt`);
   const metadata = join(outputDir, `${stem}.run.json`);
-  const source = await readFile(input, 'utf8');
+  const source = await readSource(input);
   const sourceSha256 = createHash('sha256').update(source).digest('hex');
   const pieces = splitText(source);
   const chunks = pieces.filter(piece => piece.source).map(piece => piece.source);
@@ -108,13 +157,11 @@ async function main() {
     console.log(JSON.stringify({ verified: true, chunks: chunks.length, sourceSha256, output }));
     return;
   }
-  const limitIndex = process.argv.indexOf('--limit');
-  const limit = limitIndex < 0 ? chunks.length : Math.min(chunks.length, Number(process.argv[limitIndex + 1]));
-  assert.ok(Number.isInteger(limit) && limit > 0, 'Invalid limit');
+  const limit = requestedLimit === undefined ? chunks.length : Math.min(chunks.length, requestedLimit);
   const started = Date.now();
   const initialCount = results.length;
-  await appendFile(join(root, 'WORK_LOG.md'), `\n### Execution ${new Date().toISOString()}\n\nStarted/resumed with ${initialCount}/${chunks.length} chunks; requested limit ${limit}.\nSource SHA-256: \`${sourceSha256}\`.\n`);
-  console.log(JSON.stringify({ model, sourceCharacters: [...source].length, chunks: chunks.length, resumed: results.length, limit, output }));
+  await appendFile(join(root, 'WORK_LOG.md'), `\n### Execution - book ${book} - ${new Date().toISOString()}\n\nSource: \`${input}\`.\nStarted/resumed with ${initialCount}/${chunks.length} chunks; requested limit ${limit}.\nSource SHA-256: \`${sourceSha256}\`.\n`);
+  console.log(JSON.stringify({ book, model, sourceCharacters: [...source].length, chunks: chunks.length, resumed: results.length, limit, output }));
   async function saveProgress() {
     let index = 0;
     const translated = [];

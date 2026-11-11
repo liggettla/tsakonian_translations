@@ -1,0 +1,26 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "a4e11bac9d8fd0439a8b56ef87ee90c341eb2aa8ba675412bdf9c98002c7b077",
+  "sourceSha256": "fc129827d82f4f7fac623d8fa7024e77f575391a7ffcbf4886bf0927a6174281",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/7 Ο Χάρι Πότερ και οι Κλήροι του Θανάτου.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/7/7 Harry Potter - Tsakonian.txt",
+  "completed": 1,
+  "total": 21625,
+  "complete": false,
+  "updated": "2026-11-11T13:09:53.790Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

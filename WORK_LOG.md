@@ -255,3 +255,49 @@ Started/resumed with 1029/3363 chunks; requested limit 3363.
 Source SHA-256: `073d49b5e68603315259b508ea61c9cd6c34f1598da08bbf708db5c093260d67`.
 
 Execution ended 2026-10-31T04:39:52.817Z: 3363/3363 chunks, 14597.283 seconds in this session, 53 chunks with automated warnings. Full output written; linguistic review remains required.
+
+### Execution - book 2 - 2026-11-11T13:09:36.755Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt`.
+Started/resumed with 0/3387 chunks; requested limit 1.
+Source SHA-256: `9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990`.
+
+Execution ended 2026-11-11T13:09:44.704Z: 1/3387 chunks, 7.949 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - book 3 - 2026-11-11T13:09:44.797Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt`.
+Started/resumed with 0/9363 chunks; requested limit 1.
+Source SHA-256: `cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7`.
+
+Execution ended 2026-11-11T13:09:46.913Z: 1/9363 chunks, 2.116 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - book 4 - 2026-11-11T13:09:47.045Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/4 Ο Χάρι Πότερ και το Κύπελλο της Φωτιάς.txt`.
+Started/resumed with 0/21055 chunks; requested limit 1.
+Source SHA-256: `987889cd5e0533d44ffc8830ea5344e0ae0996a51f37fd35bb347bb93011a266`.
+
+Execution ended 2026-11-11T13:09:48.871Z: 1/21055 chunks, 1.826 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - book 5 - 2026-11-11T13:09:50.038Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/5 Ο Χάρι Πότερ και το Τάγμα του Φοίνικα.docx`.
+Started/resumed with 0/38023 chunks; requested limit 1.
+Source SHA-256: `2d6ea1b97993743a3a255f7cc3d51194efd03b80c65909cfe661d6788278172e`.
+
+Execution ended 2026-11-11T13:09:51.976Z: 1/38023 chunks, 1.938 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - book 7 - 2026-11-11T13:09:52.103Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/7 Ο Χάρι Πότερ και οι Κλήροι του Θανάτου.txt`.
+Started/resumed with 0/21625 chunks; requested limit 1.
+Source SHA-256: `fc129827d82f4f7fac623d8fa7024e77f575391a7ffcbf4886bf0927a6174281`.
+
+Execution ended 2026-11-11T13:09:53.790Z: 1/21625 chunks, 1.687 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - book 2 - 2026-11-11T13:10:13.658Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt`.
+Started/resumed with 1/3387 chunks; requested limit 3387.
+Source SHA-256: `9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990`.

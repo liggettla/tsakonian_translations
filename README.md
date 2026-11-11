@@ -1,25 +1,50 @@
 # Tsakonian Translation Project
 
-This project contains a user-supplied Modern Greek text of the first Harry
-Potter book and a machine-generated Tsakonian translation, along with a
-consistency guide and a script for producing an EPUB edition.
+This project contains user-supplied Modern Greek manuscripts and machine-
+generated Tsakonian translation output, along with a consistency guide and a
+script for producing an EPUB edition of the first book.
 
 ## Project Files
 
-- `ελληνικα/1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt` is the Greek source.
-	The build script does not modify it.
-- `τςακονιαν/1 Harry Potter - Tsakonian.txt` is the Tsakonian text. Paragraphs
-	are tab-indented; chapter and section headings are flush-left.
-- `τςακονιαν/1 Harry Potter - Tsakonian.epub` is the generated ebook, with a
-	title page, linked contents, and separate chapter sections.
+- `ελληνικα/` contains numbered Greek source manuscripts. The translation
+	runner reads `.txt` files directly and extracts `.docx` files using macOS
+	`textutil`; source files are not modified.
+- `τςακονιαν/<book-number>/` contains that book's resumable checkpoints,
+	partial translation, run metadata, and completed `.txt` output.
+- `τςακονιαν/1/1 Harry Potter - Tsakonian.epub` is the first book's generated
+	ebook, with a title page, linked contents, and separate chapter sections.
 - `ORTHOGRAPHY.md` records source-backed names and terms used for consistency.
 - `build_epub.py` formats the text on request and builds and validates the EPUB.
 - `WORK_LOG.md` records translation setup, provenance, and execution notes.
 
 ## Requirements
 
-Python 3.10 or later is required. The builder uses only the Python standard
-library; no package installation is needed.
+Node.js with `Intl.Segmenter`, Ollama, and the configured local Tsakonian
+translation model are required for translation. `.docx` source extraction uses
+macOS `textutil`. Python 3.10 or later is required for EPUB building; the
+builder uses only the Python standard library.
+
+## Translate manuscripts
+
+From the project directory, translate or resume one numbered book:
+
+```sh
+node translate.mjs --book 2
+```
+
+Translate or resume every available source manuscript after book 1, one at a
+time:
+
+```sh
+node translate.mjs --all
+```
+
+The runner discovers numbered `.txt` and `.docx` sources in `ελληνικα/`,
+preserves each book's checkpoint independently, and skips book 1 in `--all`.
+Use `--limit 5` for a short per-book pilot, `--verify --book 2` to verify a
+completed output, or `--self-test` to test text segmentation. Missing book
+numbers are not inferred or generated; add the source manuscript before
+translating that book. Do not run multiple copies concurrently.
 
 ## Build the EPUB
 
@@ -29,10 +54,10 @@ Run from the project directory:
 python3 build_epub.py
 ```
 
-By default, the script reads `τςακονιαν/1 Harry Potter - Tsakonian.txt` and
-writes `τςακονιαν/1 Harry Potter - Tsakonian.epub`. This command does not rewrite
-the text file, so it is suitable for rebuilding the EPUB after editing the
-translation.
+By default, the script reads `τςακονιαν/1/1 Harry Potter - Tsakonian.txt` and
+writes `τςακονιαν/1/1 Harry Potter - Tsakonian.epub`. This command does not
+rewrite the text file, so it is suitable for rebuilding the EPUB after editing
+the translation.
 
 To normalize paragraph indentation and spacing in the text file before
 building, run:

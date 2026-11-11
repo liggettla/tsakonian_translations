@@ -1,0 +1,26 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "ee49318a9eedf258c1b224a03e2465087c0174709f79bc2f2efe1e0e55326f3b",
+  "sourceSha256": "cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/3/3 Harry Potter - Tsakonian.txt",
+  "completed": 1,
+  "total": 9363,
+  "complete": false,
+  "updated": "2026-11-11T13:09:46.912Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

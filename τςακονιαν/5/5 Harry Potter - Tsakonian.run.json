@@ -1,0 +1,26 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "ac51fc9744af5f8283dafa1fc6a6ad12395e2ae558a702db8ebc99598035ccaa",
+  "sourceSha256": "2d6ea1b97993743a3a255f7cc3d51194efd03b80c65909cfe661d6788278172e",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/5 Ο Χάρι Πότερ και το Τάγμα του Φοίνικα.docx",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/5/5 Harry Potter - Tsakonian.txt",
+  "completed": 1,
+  "total": 38023,
+  "complete": false,
+  "updated": "2026-11-11T13:09:51.975Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

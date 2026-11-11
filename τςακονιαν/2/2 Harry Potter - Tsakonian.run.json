@@ -1,0 +1,33 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "31757dcd4cda0ec2c6425b62bbd7809f6469bde9f158043f7f695e726f7484ba",
+  "sourceSha256": "9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/2/2 Harry Potter - Tsakonian.txt",
+  "completed": 20,
+  "total": 3387,
+  "complete": false,
+  "updated": "2026-11-11T13:11:44.517Z",
+  "warnings": [
+    {
+      "index": 1,
+      "issues": [
+        "unchanged_source"
+      ]
+    }
+  ],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}
