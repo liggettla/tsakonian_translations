@@ -17,10 +17,65 @@
   "sourceSha256": "cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7",
   "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt",
   "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/3/3 Harry Potter - Tsakonian.txt",
-  "completed": 1,
+  "completed": 232,
   "total": 9363,
   "complete": false,
-  "updated": "2026-11-11T13:09:46.912Z",
-  "warnings": [],
+  "updated": "2026-11-11T20:26:30.558Z",
+  "warnings": [
+    {
+      "index": 1,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 57,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 73,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 79,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 92,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 96,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 110,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 119,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 191,
+      "issues": [
+        "unchanged_source"
+      ]
+    }
+  ],
   "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
 }

@@ -301,3 +301,19 @@ Execution ended 2026-11-11T13:09:53.790Z: 1/21625 chunks, 1.687 seconds in this 
 Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt`.
 Started/resumed with 1/3387 chunks; requested limit 3387.
 Source SHA-256: `9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990`.
+
+Execution error 2026-11-11T16:16:46.975Z: Ollama HTTP 500: {"error":"prediction aborted, token repeat limit reached"}
+
+### Execution - book 2 - 2026-11-11T16:37:02.507Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt`.
+Started/resumed with 1695/3387 chunks; requested limit 3387.
+Source SHA-256: `9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990`.
+
+Execution ended 2026-11-11T19:57:21.051Z: 3387/3387 chunks, 12018.544 seconds in this session, 53 chunks with automated warnings. Full output written; linguistic review remains required.
+
+### Execution - book 3 - 2026-11-11T19:57:21.160Z
+
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt`.
+Started/resumed with 1/9363 chunks; requested limit 9363.
+Source SHA-256: `cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7`.

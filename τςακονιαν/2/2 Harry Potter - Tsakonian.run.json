@@ -17,15 +17,327 @@
   "sourceSha256": "9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990",
   "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt",
   "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/2/2 Harry Potter - Tsakonian.txt",
-  "completed": 20,
+  "completed": 3387,
   "total": 3387,
-  "complete": false,
-  "updated": "2026-11-11T13:11:44.517Z",
+  "complete": true,
+  "updated": "2026-11-11T19:57:21.046Z",
   "warnings": [
     {
       "index": 1,
       "issues": [
         "unchanged_source"
+      ]
+    },
+    {
+      "index": 55,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 62,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 143,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 246,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 250,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 287,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 295,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 339,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 408,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 451,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 455,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 599,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 666,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 678,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 737,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 755,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 949,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1119,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1264,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1404,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1437,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1439,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1481,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1569,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1613,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1637,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1695,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1732,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1843,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1871,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1939,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1941,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2005,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2068,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2134,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2173,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2196,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2315,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2396,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2405,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2597,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2730,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2752,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2783,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2786,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2791,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2872,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2982,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 3147,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 3165,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 3234,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 3254,
+      "issues": [
+        "fallback_generation_settings"
       ]
     }
   ],

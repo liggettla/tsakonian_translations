@@ -61,6 +61,10 @@ function warnings(source, translation) {
   return issues;
 }
 
+function isRepeatLimitError(message) {
+  return /prediction aborted,\s*token repeat limit reached/iu.test(message);
+}
+
 async function findSources() {
   const sourceDir = join(root, 'ελληνικα');
   const entries = await readdir(sourceDir, { withFileTypes: true });
@@ -193,7 +197,17 @@ async function translateBook(sourceFile, requestedLimit) {
         body: JSON.stringify({ model, prompt: prompt(chunks[index]), raw: true, stream: false, keep_alive: '30m', options: settings }),
         signal: AbortSignal.timeout(600_000)
       });
-      if (!response.ok) throw new Error(`Ollama HTTP ${response.status}: ${await response.text()}`);
+      if (!response.ok) {
+        const error = await response.text();
+        if (response.status !== 500 || !isRepeatLimitError(error)) {
+          throw new Error(`Ollama HTTP ${response.status}: ${error}`);
+        }
+        await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, options: settings, error, timestamp: new Date().toISOString() })}\n`);
+        generated = { response: '', done_reason: 'error' };
+        translation = '';
+        generationOptions = settings;
+        continue;
+      }
       generated = await response.json();
       translation = generated.response?.trim();
       generationOptions = settings;
@@ -206,28 +220,45 @@ async function translateBook(sourceFile, requestedLimit) {
         .map(({ segment }) => segment.trim()).filter(Boolean);
       if (segments.length < 2) throw new Error(`Chunk ${index}: whole-chunk generation failed and text cannot be split safely; checkpoint preserved.`);
       const segmentOptions = { ...options, num_predict: 384, repeat_penalty: 1.2, stop: [...options.stop, '\n'] };
+      const segmentAttempts = [segmentOptions, { ...segmentOptions, repeat_penalty: 1.5 }];
       const translatedSegments = [];
       let totalTokens = 0;
       let totalDuration = 0;
       for (let segmentIndex = 0; segmentIndex < segments.length; segmentIndex++) {
         const segmentSource = segments[segmentIndex];
-        const response = await fetch('http://127.0.0.1:11434/api/generate', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ model, prompt: prompt(segmentSource), raw: true, stream: false, keep_alive: '30m', options: segmentOptions }),
-          signal: AbortSignal.timeout(600_000)
-        });
-        if (!response.ok) throw new Error(`Ollama HTTP ${response.status} on chunk ${index}, sentence ${segmentIndex}: ${await response.text()}`);
-        const segmentResult = await response.json();
-        const segmentTranslation = segmentResult.response?.trim();
-        await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, source: segmentSource, options: segmentOptions, response: segmentResult.response, reason: segmentResult.done_reason, timestamp: new Date().toISOString() })}\n`);
+        let segmentResult;
+        let segmentTranslation;
+        let segmentGenerationOptions;
+        for (const settings of segmentAttempts) {
+          const response = await fetch('http://127.0.0.1:11434/api/generate', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model, prompt: prompt(segmentSource), raw: true, stream: false, keep_alive: '30m', options: settings }),
+            signal: AbortSignal.timeout(600_000)
+          });
+          if (!response.ok) {
+            const error = await response.text();
+            if (response.status !== 500 || !isRepeatLimitError(error)) {
+              throw new Error(`Ollama HTTP ${response.status} on chunk ${index}, sentence ${segmentIndex}: ${error}`);
+            }
+            await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, options: settings, error, timestamp: new Date().toISOString() })}\n`);
+            segmentResult = undefined;
+            segmentTranslation = undefined;
+            continue;
+          }
+          segmentResult = await response.json();
+          segmentTranslation = segmentResult.response?.trim();
+          segmentGenerationOptions = settings;
+          await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, source: segmentSource, options: settings, response: segmentResult.response, reason: segmentResult.done_reason, timestamp: new Date().toISOString() })}\n`);
+          if (segmentTranslation && segmentResult.done_reason !== 'length') break;
+        }
         if (!segmentTranslation || segmentResult.done_reason === 'length') throw new Error(`Chunk ${index}, sentence ${segmentIndex}: sentence-split retry failed; checkpoint preserved.`);
         translatedSegments.push(segmentTranslation);
         totalTokens += segmentResult.eval_count ?? 0;
         totalDuration += segmentResult.total_duration ?? 0;
         generated = segmentResult;
+        generationOptions = segmentGenerationOptions;
       }
       translation = translatedSegments.join(' ');
-      generationOptions = segmentOptions;
       splitRecovery = 'sentence_split';
       generated = { ...generated, eval_count: totalTokens, total_duration: totalDuration };
     }
