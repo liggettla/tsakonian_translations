@@ -17,10 +17,10 @@
   "sourceSha256": "cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7",
   "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt",
   "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/3/3 Harry Potter - Tsakonian.txt",
-  "completed": 232,
+  "completed": 2311,
   "total": 9363,
   "complete": false,
-  "updated": "2026-11-11T20:26:30.558Z",
+  "updated": "2026-11-12T00:03:13.276Z",
   "warnings": [
     {
       "index": 1,
@@ -72,6 +72,320 @@
     },
     {
       "index": 191,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 242,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 247,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 339,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 414,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 469,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 546,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 562,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 619,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 729,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 782,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 804,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 835,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 913,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 938,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1008,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1191,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1318,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1368,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1370,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1389,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1404,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1449,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1465,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1544,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1578,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1621,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1622,
+      "issues": [
+        "unusual_length_ratio",
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1699,
+      "issues": [
+        "repetition"
+      ]
+    },
+    {
+      "index": 1728,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1744,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1825,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1834,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1905,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1964,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1996,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2035,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2053,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2057,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2059,
+      "issues": [
+        "unusual_length_ratio"
+      ]
+    },
+    {
+      "index": 2091,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2112,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2137,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2153,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2160,
+      "issues": [
+        "fallback_generation_settings",
+        "sentence_split"
+      ]
+    },
+    {
+      "index": 2182,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2214,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2226,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2242,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2245,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2251,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2275,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2305,
       "issues": [
         "unchanged_source"
       ]
