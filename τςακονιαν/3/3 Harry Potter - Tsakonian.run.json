@@ -17,10 +17,10 @@
   "sourceSha256": "cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7",
   "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt",
   "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/3/3 Harry Potter - Tsakonian.txt",
-  "completed": 2311,
+  "completed": 2330,
   "total": 9363,
   "complete": false,
-  "updated": "2026-11-12T00:03:13.276Z",
+  "updated": "2026-11-12T00:05:34.681Z",
   "warnings": [
     {
       "index": 1,
@@ -388,6 +388,12 @@
       "index": 2305,
       "issues": [
         "unchanged_source"
+      ]
+    },
+    {
+      "index": 2311,
+      "issues": [
+        "fallback_generation_settings"
       ]
     }
   ],
