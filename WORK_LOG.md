@@ -317,3 +317,28 @@ Execution ended 2026-11-11T19:57:21.051Z: 3387/3387 chunks, 12018.544 seconds in
 Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/3 Ο Χάρι Ποτερ και ο Αιχμάλωτος του Αζκαμπάν.txt`.
 Started/resumed with 1/9363 chunks; requested limit 9363.
 Source SHA-256: `cae0a680ea028462fadaac50ed8fa5c38265883bcfdbe29107093704d119a6a7`.
+
+### Execution - leonida - book 1 - 2026-11-12T00:12:54.235Z
+
+Model: `hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0` (chat API).
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt`.
+Started/resumed with 0/3363 chunks; requested limit 1.
+Source SHA-256: `073d49b5e68603315259b508ea61c9cd6c34f1598da08bbf708db5c093260d67`.
+
+Execution ended 2026-11-12T00:13:00.036Z: 1/3363 chunks, 5.801 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - leonida - book 2 - 2026-11-12T00:13:00.100Z
+
+Model: `hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0` (chat API).
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt`.
+Started/resumed with 0/3387 chunks; requested limit 1.
+Source SHA-256: `9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990`.
+
+Execution ended 2026-11-12T00:13:01.392Z: 1/3387 chunks, 1.292 seconds in this session, 0 chunks with automated warnings. Pilot only; full translation not yet complete.
+
+### Execution - leonida - book 1 - 2026-11-12T00:13:17.675Z
+
+Model: `hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0` (chat API).
+Source: `/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt`.
+Started/resumed with 1/3363 chunks; requested limit 3363.
+Source SHA-256: `073d49b5e68603315259b508ea61c9cd6c34f1598da08bbf708db5c093260d67`.

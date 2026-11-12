@@ -1,0 +1,346 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "e84de98227da43d99b9f7086bbb47c0e6056416faa0e268c57648729e06f030e",
+  "sourceSha256": "073d49b5e68603315259b508ea61c9cd6c34f1598da08bbf708db5c093260d67",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/1 Harry Potter - Tsakonian.txt",
+  "completed": 3363,
+  "total": 3363,
+  "complete": true,
+  "updated": "2026-10-31T04:39:52.778Z",
+  "warnings": [
+    {
+      "index": 273,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 295,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 298,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 307,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 337,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 387,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 392,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 408,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 423,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 486,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 491,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 493,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 576,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 585,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 640,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 804,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 881,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 883,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 974,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 976,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1008,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1028,
+      "issues": [
+        "fallback_generation_settings",
+        "sentence_split"
+      ]
+    },
+    {
+      "index": 1064,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1174,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1235,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1240,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1243,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1304,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1524,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1530,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1590,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1593,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1604,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1689,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1700,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1762,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1854,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 1889,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 1929,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2212,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2282,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2287,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2461,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2503,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2504,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2510,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2605,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2716,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2865,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 2963,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 2974,
+      "issues": [
+        "fallback_generation_settings"
+      ]
+    },
+    {
+      "index": 3099,
+      "issues": [
+        "unchanged_source"
+      ]
+    },
+    {
+      "index": 3261,
+      "issues": [
+        "unchanged_source"
+      ]
+    }
+  ],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

@@ -17,7 +17,9 @@ from xml.etree import ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parent
-DEFAULT_INPUT = ROOT / "τςακονιαν" / "1 Harry Potter - Tsakonian.txt"
+DEFAULT_INPUT = (
+    ROOT / "τςακονιαν_gemma_2_model" / "1" / "1 Harry Potter - Tsakonian.txt"
+)
 DEFAULT_OUTPUT = DEFAULT_INPUT.with_suffix(".epub")
 LANGUAGE = "tsd"
 AUTHOR = "J. K. Rowling"

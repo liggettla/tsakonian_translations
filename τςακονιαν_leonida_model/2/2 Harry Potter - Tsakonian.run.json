@@ -1,0 +1,22 @@
+{
+  "modelName": "leonida",
+  "mode": "chat",
+  "model": "hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536
+  },
+  "maxChars": 550,
+  "fingerprint": "a151cc523174e4c249670dcd480d74005c17c62290dac430e9698c7115a09ced",
+  "sourceSha256": "9e8674a53b3d8973edd02a1f82de900ec20baffc3a8a9265e7031756cdf7e990",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/2 Ο Χάρι Πότερ και η Κάμαρα με τα Μυστικά.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν_leonida_model/2/2 Harry Potter - Tsakonian.txt",
+  "completed": 1,
+  "total": 3387,
+  "complete": false,
+  "updated": "2026-11-12T00:13:01.391Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

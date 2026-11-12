@@ -1,0 +1,22 @@
+{
+  "modelName": "leonida",
+  "mode": "chat",
+  "model": "hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536
+  },
+  "maxChars": 550,
+  "fingerprint": "5f152a7b9240f4167832edd70546b9829a21fc8886d32dcd0aedde4461569b7f",
+  "sourceSha256": "073d49b5e68603315259b508ea61c9cd6c34f1598da08bbf708db5c093260d67",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/1 Ο Χάρι Πότερ και η Φιλοσοφική Λίθος.docx.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν_leonida_model/1/1 Harry Potter - Tsakonian.txt",
+  "completed": 13,
+  "total": 3363,
+  "complete": false,
+  "updated": "2026-11-12T00:14:57.002Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

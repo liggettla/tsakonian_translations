@@ -1,0 +1,26 @@
+{
+  "model": "hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0",
+  "options": {
+    "temperature": 0,
+    "seed": 42,
+    "num_ctx": 4096,
+    "num_predict": 1536,
+    "stop": [
+      "### Instruction:",
+      "### Input:",
+      "### Response:",
+      "<end_of_turn>"
+    ]
+  },
+  "maxChars": 550,
+  "fingerprint": "25df47ade2e086fcf4f27055254e77b6e4ed78b9f6abcdd8d8114c2007841966",
+  "sourceSha256": "987889cd5e0533d44ffc8830ea5344e0ae0996a51f37fd35bb347bb93011a266",
+  "input": "/Users/laliggett/Downloads/tsakonian_translations/ελληνικα/4 Ο Χάρι Πότερ και το Κύπελλο της Φωτιάς.txt",
+  "output": "/Users/laliggett/Downloads/tsakonian_translations/τςακονιαν/4/4 Harry Potter - Tsakonian.txt",
+  "completed": 1,
+  "total": 21055,
+  "complete": false,
+  "updated": "2026-11-11T13:09:48.870Z",
+  "warnings": [],
+  "caveat": "Unreviewed machine translation. Automated checks do not establish Tsakonian accuracy."
+}

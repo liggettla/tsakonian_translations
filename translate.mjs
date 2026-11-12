@@ -8,11 +8,24 @@ import { fileURLToPath } from 'node:url';
 
 const root = dirname(fileURLToPath(import.meta.url));
 const execFileAsync = promisify(execFile);
-const model = 'hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0';
-const options = {
-  temperature: 0, seed: 42, num_ctx: 4096, num_predict: 1536,
-  stop: ['### Instruction:', '### Input:', '### Response:', '<end_of_turn>']
+const models = {
+  gemma: {
+    id: 'hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0',
+    outputDir: 'τςακονιαν_gemma_2_model',
+    mode: 'generate',
+    options: {
+      temperature: 0, seed: 42, num_ctx: 4096, num_predict: 1536,
+      stop: ['### Instruction:', '### Input:', '### Response:', '<end_of_turn>']
+    }
+  },
+  leonida: {
+    id: 'hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0',
+    outputDir: 'τςακονιαν_leonida_model',
+    mode: 'chat',
+    options: { temperature: 0, seed: 42, num_ctx: 4096, num_predict: 1536 }
+  }
 };
+const leonidaSystem = 'You are a precise translation assistant. Output only the translation, nothing else.';
 const maxChars = 550;
 
 function splitText(text) {
@@ -47,7 +60,8 @@ function splitText(text) {
   return pieces;
 }
 
-function prompt(source) {
+function prompt(source, modelName) {
+  if (modelName === 'leonida') return `Translate from Greek to Tsakonian:\n\n${source}`;
   return `### Instruction:\nTranslate the following text from Greek to Tsakonian:\n\n### Input:\n${source}\n\n### Response:\n`;
 }
 
@@ -63,6 +77,38 @@ function warnings(source, translation) {
 
 function isRepeatLimitError(message) {
   return /prediction aborted,\s*token repeat limit reached/iu.test(message);
+}
+
+async function generate(source, settings, modelConfig) {
+  const chat = modelConfig.mode === 'chat';
+  const response = await fetch(`http://127.0.0.1:11434/api/${chat ? 'chat' : 'generate'}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: modelConfig.id,
+      ...(chat
+        ? { messages: [
+          { role: 'system', content: leonidaSystem },
+          { role: 'user', content: prompt(source, 'leonida') }
+        ] }
+        : { prompt: prompt(source, 'gemma'), raw: true }),
+      stream: false,
+      keep_alive: '30m',
+      options: settings
+    }),
+    signal: AbortSignal.timeout(600_000)
+  });
+  if (!response.ok) {
+    const error = await response.text();
+    if (response.status === 500 && isRepeatLimitError(error)) return { repeatLimitError: error };
+    throw new Error(`Ollama HTTP ${response.status}: ${error}`);
+  }
+  const generated = await response.json();
+  return {
+    generated,
+    translation: (chat ? generated.message?.content : generated.response)?.trim(),
+    doneReason: generated.done_reason
+  };
 }
 
 async function findSources() {
@@ -98,7 +144,8 @@ async function main() {
       assert.ok(pieces.filter(piece => piece.source).every(piece => piece.source.length <= maxChars));
       assert.equal(rebuilt.replace(/[^\r\n]/gu, ''), source.replace(/[^\r\n]/gu, ''));
     }
-    assert.ok(prompt('sample').includes('Greek to Tsakonian'));
+    assert.ok(prompt('sample', 'gemma').includes('Greek to Tsakonian'));
+    assert.equal(prompt('sample', 'leonida'), 'Translate from Greek to Tsakonian:\n\nsample');
     assert.deepEqual(warnings('sample', 'sample'), ['unchanged_source']);
     console.log('PASS: segmentation preserves text and line breaks; prompt and warning checks pass.');
     return;
@@ -112,21 +159,34 @@ async function main() {
 
   const allBooks = process.argv.includes('--all');
   const bookIndex = process.argv.indexOf('--book');
-  assert.ok(!(allBooks && bookIndex >= 0), 'Use either --all or --book, not both.');
+  const booksIndex = process.argv.indexOf('--books');
+  const modelIndex = process.argv.indexOf('--model');
+  const modelName = modelIndex < 0 ? 'gemma' : process.argv[modelIndex + 1];
+  assert.ok(models[modelName], `Unknown model "${modelName}". Choose gemma or leonida.`);
+  assert.ok([allBooks, bookIndex >= 0, booksIndex >= 0].filter(Boolean).length <= 1, 'Use only one of --all, --book, or --books.');
   const sources = await findSources();
+  const requestedBooks = booksIndex < 0 ? [] : process.argv[booksIndex + 1].split(',').map(Number);
+  assert.ok(requestedBooks.every(book => Number.isInteger(book) && book > 0), 'Invalid --books list.');
   const books = allBooks
     ? sources.filter(source => source.book > 1)
-    : [sources.find(source => source.book === (bookIndex < 0 ? 1 : Number(process.argv[bookIndex + 1])))].filter(Boolean);
+    : bookIndex >= 0
+      ? [sources.find(source => source.book === Number(process.argv[bookIndex + 1]))].filter(Boolean)
+      : booksIndex >= 0
+        ? requestedBooks.map(book => sources.find(source => source.book === book)).filter(Boolean)
+        : [sources.find(source => source.book === 1)].filter(Boolean);
   assert.ok(books.length, allBooks ? 'No source manuscripts for books 2 and later were found.' : 'No source manuscript found for the requested book.');
+  if (booksIndex >= 0) assert.equal(books.length, requestedBooks.length, 'One or more requested source manuscripts were not found.');
   const limitIndex = process.argv.indexOf('--limit');
   const limit = limitIndex < 0 ? undefined : Number(process.argv[limitIndex + 1]);
   if (limit !== undefined) assert.ok(Number.isInteger(limit) && limit > 0, 'Invalid limit');
-  for (const source of books) await translateBook(source, limit);
+  for (const source of books) await translateBook(source, limit, modelName);
 }
 
-async function translateBook(sourceFile, requestedLimit) {
+async function translateBook(sourceFile, requestedLimit, modelName) {
   const { book, path: input } = sourceFile;
-  const outputDir = join(root, 'τςακονιαν', String(book));
+  const modelConfig = models[modelName];
+  const { id: model, options } = modelConfig;
+  const outputDir = join(root, modelConfig.outputDir, String(book));
   const stem = `${book} Harry Potter - Tsakonian`;
   const checkpoint = join(outputDir, `${stem}.checkpoint.jsonl`);
   const output = join(outputDir, `${stem}.txt`);
@@ -136,7 +196,11 @@ async function translateBook(sourceFile, requestedLimit) {
   const sourceSha256 = createHash('sha256').update(source).digest('hex');
   const pieces = splitText(source);
   const chunks = pieces.filter(piece => piece.source).map(piece => piece.source);
-  const fingerprint = createHash('sha256').update(JSON.stringify({ source, model, options, maxChars, prompt: prompt('') })).digest('hex');
+  const fingerprint = createHash('sha256').update(JSON.stringify({
+    source, model, mode: modelConfig.mode, options, maxChars,
+    system: modelName === 'leonida' ? leonidaSystem : undefined,
+    prompt: prompt('', modelName)
+  })).digest('hex');
   await mkdir(outputDir, { recursive: true });
   const results = [];
   try {
@@ -164,8 +228,8 @@ async function translateBook(sourceFile, requestedLimit) {
   const limit = requestedLimit === undefined ? chunks.length : Math.min(chunks.length, requestedLimit);
   const started = Date.now();
   const initialCount = results.length;
-  await appendFile(join(root, 'WORK_LOG.md'), `\n### Execution - book ${book} - ${new Date().toISOString()}\n\nSource: \`${input}\`.\nStarted/resumed with ${initialCount}/${chunks.length} chunks; requested limit ${limit}.\nSource SHA-256: \`${sourceSha256}\`.\n`);
-  console.log(JSON.stringify({ book, model, sourceCharacters: [...source].length, chunks: chunks.length, resumed: results.length, limit, output }));
+  await appendFile(join(root, 'WORK_LOG.md'), `\n### Execution - ${modelName} - book ${book} - ${new Date().toISOString()}\n\nModel: \`${model}\` (${modelConfig.mode} API).\nSource: \`${input}\`.\nStarted/resumed with ${initialCount}/${chunks.length} chunks; requested limit ${limit}.\nSource SHA-256: \`${sourceSha256}\`.\n`);
+  console.log(JSON.stringify({ book, modelName, model, sourceCharacters: [...source].length, chunks: chunks.length, resumed: results.length, limit, output }));
   async function saveProgress() {
     let index = 0;
     const translated = [];
@@ -177,7 +241,7 @@ async function translateBook(sourceFile, requestedLimit) {
     await writeFile(`${partial}.tmp`, translated.join(''), 'utf8');
     await rename(`${partial}.tmp`, partial);
     const report = {
-      model, options, maxChars, fingerprint, sourceSha256, input, output,
+      modelName, mode: modelConfig.mode, model, options, maxChars, fingerprint, sourceSha256, input, output,
       completed: results.length, total: chunks.length,
       complete: results.length === chunks.length, updated: new Date().toISOString(),
       warnings: results.filter(result => result.warnings.length).map(({ index: chunkIndex, warnings: issues }) => ({ index: chunkIndex, issues })),
@@ -190,37 +254,40 @@ async function translateBook(sourceFile, requestedLimit) {
     let generated;
     let translation;
     let generationOptions;
-    const attempts = [options, { ...options, repeat_penalty: 1.2, stop: [...options.stop, '\n'] }];
+    const retryOptions = modelConfig.mode === 'chat'
+      ? { ...options, repeat_penalty: 1.2 }
+      : { ...options, repeat_penalty: 1.2, stop: [...options.stop, '\n'] };
+    const attempts = [options, retryOptions];
     for (const settings of attempts) {
-      const response = await fetch('http://127.0.0.1:11434/api/generate', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ model, prompt: prompt(chunks[index]), raw: true, stream: false, keep_alive: '30m', options: settings }),
-        signal: AbortSignal.timeout(600_000)
-      });
-      if (!response.ok) {
-        const error = await response.text();
-        if (response.status !== 500 || !isRepeatLimitError(error)) {
-          throw new Error(`Ollama HTTP ${response.status}: ${error}`);
-        }
-        await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, options: settings, error, timestamp: new Date().toISOString() })}\n`);
+      const result = await generate(chunks[index], settings, modelConfig);
+      if (result.repeatLimitError) {
+        await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, options: settings, error: result.repeatLimitError, timestamp: new Date().toISOString() })}\n`);
         generated = { response: '', done_reason: 'error' };
         translation = '';
         generationOptions = settings;
         continue;
       }
-      generated = await response.json();
-      translation = generated.response?.trim();
+      generated = result.generated;
+      translation = result.translation;
       generationOptions = settings;
-      if (translation && generated.done_reason !== 'length') break;
-      await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, source: chunks[index], options: settings, response: generated.response, reason: generated.done_reason, timestamp: new Date().toISOString() })}\n`);
+      if (translation && result.doneReason !== 'length') break;
+      await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, source: chunks[index], options: settings, response: generated.message?.content ?? generated.response, reason: generated.done_reason, timestamp: new Date().toISOString() })}\n`);
     }
     let splitRecovery;
     if (!translation || generated.done_reason === 'length') {
       const segments = [...new Intl.Segmenter('el', { granularity: 'sentence' }).segment(chunks[index])]
         .map(({ segment }) => segment.trim()).filter(Boolean);
       if (segments.length < 2) throw new Error(`Chunk ${index}: whole-chunk generation failed and text cannot be split safely; checkpoint preserved.`);
-      const segmentOptions = { ...options, num_predict: 384, repeat_penalty: 1.2, stop: [...options.stop, '\n'] };
-      const segmentAttempts = [segmentOptions, { ...segmentOptions, repeat_penalty: 1.5 }];
+      const segmentOptions = {
+        ...options,
+        num_predict: 384,
+        repeat_penalty: 1.2,
+        ...(modelConfig.mode === 'generate' ? { stop: [...options.stop, '\n'] } : {})
+      };
+      const segmentAttempts = [
+        segmentOptions,
+        { ...segmentOptions, repeat_penalty: 1.5 }
+      ];
       const translatedSegments = [];
       let totalTokens = 0;
       let totalDuration = 0;
@@ -230,26 +297,18 @@ async function translateBook(sourceFile, requestedLimit) {
         let segmentTranslation;
         let segmentGenerationOptions;
         for (const settings of segmentAttempts) {
-          const response = await fetch('http://127.0.0.1:11434/api/generate', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model, prompt: prompt(segmentSource), raw: true, stream: false, keep_alive: '30m', options: settings }),
-            signal: AbortSignal.timeout(600_000)
-          });
-          if (!response.ok) {
-            const error = await response.text();
-            if (response.status !== 500 || !isRepeatLimitError(error)) {
-              throw new Error(`Ollama HTTP ${response.status} on chunk ${index}, sentence ${segmentIndex}: ${error}`);
-            }
-            await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, options: settings, error, timestamp: new Date().toISOString() })}\n`);
+          const result = await generate(segmentSource, settings, modelConfig);
+          if (result.repeatLimitError) {
+            await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, options: settings, error: result.repeatLimitError, timestamp: new Date().toISOString() })}\n`);
             segmentResult = undefined;
             segmentTranslation = undefined;
             continue;
           }
-          segmentResult = await response.json();
-          segmentTranslation = segmentResult.response?.trim();
+          segmentResult = result.generated;
+          segmentTranslation = result.translation;
           segmentGenerationOptions = settings;
-          await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, source: segmentSource, options: settings, response: segmentResult.response, reason: segmentResult.done_reason, timestamp: new Date().toISOString() })}\n`);
-          if (segmentTranslation && segmentResult.done_reason !== 'length') break;
+          await appendFile(join(outputDir, `${stem}.attempts.jsonl`), `${JSON.stringify({ index, strategy: 'sentence_split', segmentIndex, source: segmentSource, options: settings, response: segmentResult.message?.content ?? segmentResult.response, reason: result.doneReason, timestamp: new Date().toISOString() })}\n`);
+          if (segmentTranslation && result.doneReason !== 'length') break;
         }
         if (!segmentTranslation || segmentResult.done_reason === 'length') throw new Error(`Chunk ${index}, sentence ${segmentIndex}: sentence-split retry failed; checkpoint preserved.`);
         translatedSegments.push(segmentTranslation);

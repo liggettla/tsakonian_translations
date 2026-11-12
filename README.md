@@ -9,10 +9,13 @@ script for producing an EPUB edition of the first book.
 - `ελληνικα/` contains numbered Greek source manuscripts. The translation
 	runner reads `.txt` files directly and extracts `.docx` files using macOS
 	`textutil`; source files are not modified.
-- `τςακονιαν/<book-number>/` contains that book's resumable checkpoints,
-	partial translation, run metadata, and completed `.txt` output.
-- `τςακονιαν/1/1 Harry Potter - Tsakonian.epub` is the first book's generated
-	ebook, with a title page, linked contents, and separate chapter sections.
+- `τςακονιαν_gemma_2_model/<book-number>/` and
+	`τςακονιαν_leonida_model/<book-number>/` keep each model's resumable
+	checkpoints, partial translations, metadata, and completed `.txt` outputs
+	separate.
+- `τςακονιαν_gemma_2_model/1/1 Harry Potter - Tsakonian.epub` is the first
+	book's generated ebook, with a title page, linked contents, and separate
+	chapter sections.
 - `ORTHOGRAPHY.md` records source-backed names and terms used for consistency.
 - `build_epub.py` formats the text on request and builds and validates the EPUB.
 - `WORK_LOG.md` records translation setup, provenance, and execution notes.
@@ -20,16 +23,24 @@ script for producing an EPUB edition of the first book.
 ## Requirements
 
 Node.js with `Intl.Segmenter`, Ollama, and the configured local Tsakonian
-translation model are required for translation. `.docx` source extraction uses
-macOS `textutil`. Python 3.10 or later is required for EPUB building; the
+translation model are required for translation. The Gemma model is
+`hf.co/jgchaparro/language_garden-tsd-ell-9B-bl-GGUF:Q8_0`; the newer Leonida
+model is `hf.co/jgchaparro/Llama-Leonida-GGUF:Q8_0`. `.docx` source extraction
+uses macOS `textutil`. Python 3.10 or later is required for EPUB building; the
 builder uses only the Python standard library.
 
 ## Translate manuscripts
 
-From the project directory, translate or resume one numbered book:
+From the project directory, Translate or resume one numbered book with Gemma (the default):
 
 ```sh
 node translate.mjs --book 2
+```
+
+Choose Leonida and translate the first two available manuscripts:
+
+```sh
+node translate.mjs --model leonida --books 1,2
 ```
 
 Translate or resume every available source manuscript after book 1, one at a
@@ -40,11 +51,14 @@ node translate.mjs --all
 ```
 
 The runner discovers numbered `.txt` and `.docx` sources in `ελληνικα/`,
-preserves each book's checkpoint independently, and skips book 1 in `--all`.
-Use `--limit 5` for a short per-book pilot, `--verify --book 2` to verify a
-completed output, or `--self-test` to test text segmentation. Missing book
-numbers are not inferred or generated; add the source manuscript before
-translating that book. Do not run multiple copies concurrently.
+preserves each book's checkpoint independently, and keeps each model's outputs
+in separate folders. Leonida uses Ollama's chat API and its recommended
+instruction format; Gemma retains the original raw-generation prompt. Use
+`--limit 5` for a short per-book pilot, `--verify --book 2` to verify a
+completed output, `--list` to see available manuscripts, or `--self-test` to
+test text segmentation and model prompts. Missing book numbers are not inferred
+or generated; add the source manuscript before translating that book. Do not
+run multiple copies concurrently.
 
 ## Build the EPUB
 
@@ -54,10 +68,10 @@ Run from the project directory:
 python3 build_epub.py
 ```
 
-By default, the script reads `τςακονιαν/1/1 Harry Potter - Tsakonian.txt` and
-writes `τςακονιαν/1/1 Harry Potter - Tsakonian.epub`. This command does not
-rewrite the text file, so it is suitable for rebuilding the EPUB after editing
-the translation.
+By default, the script reads
+`τςακονιαν_gemma_2_model/1/1 Harry Potter - Tsakonian.txt` and writes the EPUB
+beside it. This command does not rewrite the text file, so it is suitable for
+rebuilding the EPUB after editing the translation.
 
 To normalize paragraph indentation and spacing in the text file before
 building, run:
@@ -86,9 +100,10 @@ do not assess translation quality.
 
 ## Translation Status
 
-The translation was generated locally with an Ollama-hosted Gemma 2 model
-fine-tuned for Greek/Tsakonian translation. The model and run details are
-recorded in `WORK_LOG.md`.
+Both translation models run locally through Ollama. Leonida is an 8B Llama
+model with a Tsakonian translation benchmark; its model card and license
+details are available at
+https://huggingface.co/jgchaparro/Llama-Leonida-GGUF.
 
 This is machine translation, not a validated Tsakonian edition. It has not been
 reviewed by a qualified Tsakonian reader, and automated checks cannot establish
